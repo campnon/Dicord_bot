@@ -1,5 +1,5 @@
 import discord
-from discord_bot import Bot, stock
+from discord_bot import Bot, stock, GameGuess
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -22,7 +22,13 @@ async def on_message(message):
 
     if message.content.startswith('$stock'):
         
-        price = stock().temp_data(message)
-        await message.channel.send(price)
+        info = stock().temp_data(message)
+       
+        
+        await message.channel.send(info)
+    if message.content.startswith('$guess'):
+        game = GameGuess().get_user(message)
+        await message.channel.send("sending ... ")
+
 client.run(Bot().auth())
 

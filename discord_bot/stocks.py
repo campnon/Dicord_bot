@@ -22,8 +22,11 @@ class stock:
         r = requests.get(url)
         soup = BeautifulSoup(r.content, "html.parser")
         rows = soup.find("div", {"class": "YMlKec fxKbKc"})
+        names = soup.find("div", {"class": "zzDege"})
+        for name in names:
+            name = name 
         for value in rows:
-            return value
+            return f"{name} is currently at {value}"
     
     def get_symbol(self, message):
         conntent = message.content
