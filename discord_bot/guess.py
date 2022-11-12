@@ -1,14 +1,19 @@
 import random 
 
 class GameGuess:
-    def __init__(self):
-        pass
-
-    def get_user(self, massage):
+    def __init__(self, message):
         self.user = massage.author
-        print(self.user)
-    
+        self.message = message.content
 
-    def pick_random(self):
+    def pick_random(self, min, max):
+        self.min = min
+        self.max = max
+        choice = random.randint(self.min, self.max)
+        return choice
+
+    def game(self):
         pass
+    
+    def test(self):
+        a = stock.get_symbol(self.message)
    

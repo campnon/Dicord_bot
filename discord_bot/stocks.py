@@ -18,7 +18,7 @@ class stock:
         sym = self.get_symbol(message)
         import requests
         from bs4 import BeautifulSoup
-        url = f'https://www.google.com/finance/quote/{sym}:NASDAQ'
+        url = f'https://www.google.com/finance/quote/{sym[1]}:NASDAQ'
         r = requests.get(url)
         soup = BeautifulSoup(r.content, "html.parser")
         rows = soup.find("div", {"class": "YMlKec fxKbKc"})
@@ -31,7 +31,7 @@ class stock:
     def get_symbol(self, message):
         conntent = message.content
         symbol = conntent.split()
-        return symbol[1]
+        return symbol
 
 
 
