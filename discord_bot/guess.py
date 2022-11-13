@@ -11,10 +11,11 @@ class GameGuess:
    
     def open_file(slef):
         fhand  = 'data.json'
-        fopen = open(fhand, 'w')
+        fopen = open(fhand, 'r')
         data = json.load(fopen)
         return data
 
+    
     def pick_random(self, min, max):
         self.min = min
         self.max = max
@@ -24,9 +25,14 @@ class GameGuess:
         return choice
 
     def game(self):
-        pass
+        data = self.open_file()
+        if 'Mesisamu' in data['guess']:
+            print("uer already has a guess in the file")
+        else:
+            print("No user found in the file")
+        
     
     def test(self):
         a = stock.get_symbol(self.message)
     
-GameGuess("test").pick_random(0, 100)
+GameGuess("test").game()
