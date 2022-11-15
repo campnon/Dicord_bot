@@ -1,0 +1,1 @@
+create = 'CREATE TABLE "Guess" ("id"	INTEGER, "user"	TEXT, "guess"	INTEGER, PRIMARY KEY("id" AUTOINCREMENT))'
