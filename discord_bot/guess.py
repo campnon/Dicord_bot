@@ -7,7 +7,7 @@ class GameGuess:
     def __init__(self, message):
         self.user = message.author
         self.message = message.content
-        self.check_for_guess()
+       
 
     def check_for_guess(self):
         con = sqlite3.connect('discord_bot//database.db')
@@ -29,8 +29,27 @@ class GameGuess:
         choice = random.randint(self.min, self.max)
         return choice
 
+    def splt_user_message(self, split_how):
+        message = self.message.split()
+        if split_how is 25:
+            for k in message:
+                print(k)
+        return int(k)
+        
+
     def game(self):
-        pass
+        guesss = self.check_for_guess()
+        user_gues = self.splt_user_message(25)
+        if int(guesss) < user_gues:
+            return f'Your guess of {user_gues}, is Higher then number choisen. Try again'
+        elif int(guesss) > user_gues:
+            return f'Your guess of {user_gues}, is Below then number choisen. Try again'
+        elif int(guesss) == user_gues:
+            #delte user guesss from databases
+            return f'Youer guess of {user_gues} was the corret number, Well played'
+        
+
+        return f'The guess is {guesss}'
         
     
     def test(self):

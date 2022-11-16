@@ -27,8 +27,8 @@ async def on_message(message):
         
         await message.channel.send(info)
     if message.content.startswith('$guess'):
-        game = GameGuess(message)
-        await message.channel.send("sending ... ")
+        game = GameGuess(message).game()
+        await message.channel.send(f"{game}")
 
 client.run(Bot().auth())
-
+s
