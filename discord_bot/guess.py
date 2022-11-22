@@ -1,7 +1,5 @@
 import random 
-import json
 import sqlite3
-import os
 
 class GameGuess:
     def __init__(self, message):
@@ -30,12 +28,22 @@ class GameGuess:
         return choice
 
     def splt_user_message(self, split_how):
-        message = self.message.split()
-        if split_how is 25:
-            for k in message:
-                print(k)
+        try:
+            message = self.message.split()
+            if split_how  == 25:
+                for k in message:
+                    print(k)
+        except: message = 'There was an Error '
         return int(k)
-        
+
+    def remove_user_guess(self):
+        con = sqlite3.connect('discord_bot//database.db')
+        cur = con.cursor()
+        cur.execute(f"DELETE  FROM Guess WHERE user='{self.user}'")
+        con.commit()
+        return
+
+             
 
     def game(self):
         guesss = self.check_for_guess()
@@ -45,14 +53,11 @@ class GameGuess:
         elif int(guesss) > user_gues:
             return f'Your guess of {user_gues}, is Below then number choisen. Try again'
         elif int(guesss) == user_gues:
-            #delte user guesss from databases
+            self.remove_user_guess()
             return f'Youer guess of {user_gues} was the corret number, Well played'
         
 
         return f'The guess is {guesss}'
         
-    
-    def test(self):
-        a = stock.get_symbol(self.message)
     
 
